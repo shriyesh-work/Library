@@ -1,0 +1,8 @@
+<h1>Search for user</h1>
+<% flash.each do |key, value| %>
+  <%= value %>
+<% end %>
+<%= form_tag(action: "search_user") do %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search User") %>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Login</h1>
+<% flash.each do |key, value| %>
+  <%= value %>
+<% end %>
+<%= form_tag(action: "login", url: {method: "post"}) do %>
+<p>
+	<%= label(:user, :email) %><br>
+	<%= email_field(:user, :email) %>
+</p>
+<p>
+	<%= label(:user, :password) %><br>
+	<%= password_field(:user, :password) %>
+</p>
+<%= submit_tag(:login) %>
+<% end %>

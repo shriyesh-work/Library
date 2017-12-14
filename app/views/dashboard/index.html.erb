@@ -1,0 +1,13 @@
+<h1>Dashboard</h1>
+
+<strong>Welcome <%= @user.firstname %></strong><br>
+<%= link_to "logout", :logout %> 
+<br>
+<p>
+  <strong>Manage Users</strong>
+  <ol>
+  	<li><%= link_to "Create New", :dashboard_new_user %></li>
+  	<li><%= link_to "List Users", dashboard_list_users_path(count: '0') %></li>
+    <li><%= link_to "Search User", :dashboard_search_box %></li>
+  </ol>
+</p>
