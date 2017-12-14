@@ -1,0 +1,19 @@
+<h1>Add New Book</h1>
+<%= form_with model: @user do |form| %>
+  <p>
+    <%= form.label(:name) %>
+    <%= form.text_field(:name) %>
+  </p>
+  <p>
+    <%= form.label(:author) %>
+    <%= form.text_field(:author) %>
+  </p>
+  <p>
+    <%= form.label(:isbn) %>
+    <%= form.number_field(:isbn) %>
+  </p>
+  <p>
+    <%= form.label(:category) %>
+    <%= form.text_field(:category) %>
+  </p>
+<% end %>
