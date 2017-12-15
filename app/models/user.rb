@@ -4,6 +4,11 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "not a valid email" }
   validates :password, length: { in: 6..20 }, confirmation: true
 
+  before_save do 
+    self.firstname = firstname.capitalize
+    self.lastname = lastname.capitalize
+  end
+
   def self.authenticate(user_params)
     user = find_by email: user_params[:email]
     if user.present? and user.password.eql? user_params[:password]

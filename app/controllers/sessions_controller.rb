@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def logout
     if cookies.signed[:user_id]
       cookies.delete :user_id
-      flash[:alert] = "logged out succesfully"
+      flash[:alert] = "Logged Out Succesfully"
     end
     redirect_to :login
   end
