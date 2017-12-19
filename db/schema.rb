@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214124249) do
+ActiveRecord::Schema.define(version: 20171219120750) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 128
     t.string "author", limit: 128
     t.bigint "isbn"
-    t.string "category", limit: 128
+    t.bigint "category_id"
+    t.index ["category_id"], name: "fk_rails_1e86d9c4ec"
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -30,4 +37,5 @@ ActiveRecord::Schema.define(version: 20171214124249) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "books", "categories"
 end

@@ -1,7 +1,27 @@
-<h1>Review Profile</h1>
-
-<strong>Firstname: </strong><h3><%= @user.firstname %></h3>
-<strong>Lastname: </strong><h3><%= @user.lastname %></h3>
-<strong>Email: </strong><h3><%= @user.email %></h3>
-
-<%= link_to "Edit Profile", edit_user_path %>
+<div class="row">
+  <div class="col-sm-6">
+  <h1>Review Profile</h1>
+  <% flash.each do |key, value| %>
+    <%= value %><br>
+  <% end %>
+  <br>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th scope="row">Firstname</th>
+        <td><%= @user.firstname %></td>
+      </tr>
+      <tr>
+        <th scope="row">Lastname</th>
+        <td><%= @user.lastname %></td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <%= link_to "Edit Profile", edit_user_path, class: 'btn btn-primary' %>
+</div>
+</div>

@@ -1,0 +1,19 @@
+<%= link_to "Add Book", new_book_path, class: 'btn btn-primary' %>
+<br>
+<br>
+<%= form_tag admin_books_search_path, remote: true do %>
+<div class="form-inline">
+  <%= text_field_tag :query, "", class: 'form-control' %>
+  <%= submit_tag "Search", class: 'btn btn-default' %>
+</div>
+<% end %>
+
+  
+<div class="row">
+  <div class="col-sm-8">
+    <h2>List of Books:</h2>
+    <div id="book_list">  
+      <%= render 'book_list' %>
+    </div>
+  </div>
+</div>

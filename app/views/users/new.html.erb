@@ -1,0 +1,11 @@
+<% if @user_logged and @user_logged.is_admin %>
+  <h1>New User</h1>
+<% else %>
+  <h1>Sign Up</h1>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <%= render 'form' %>
+  </div>
+</div>

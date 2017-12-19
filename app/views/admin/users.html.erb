@@ -1,0 +1,18 @@
+<%= link_to "Add User", new_user_path, class: 'btn btn-primary' %>
+<br>
+<br>
+<%= form_tag admin_users_search_path, remote: true do %>
+<div class="form-inline">
+  <%= text_field_tag :query, "", class: 'form-control' %>
+  <%= submit_tag "Search", class: 'btn btn-default' %>
+</div>
+<% end %>
+  
+<div class="row">
+  <div class="col-sm-8">
+    <h2>List of Users:</h2>
+    <div id="user_list">  
+      <%= render 'user_list' %>
+    </div>
+  </div>
+</div>
