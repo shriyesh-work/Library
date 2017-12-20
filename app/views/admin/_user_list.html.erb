@@ -1,9 +1,15 @@
 <ul class="list-group">
 <% @users.each do |user| %>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    <h5><%= user.firstname+" "+user.lastname %></h5>
-    <%= user.email %>
-    <a class="badge" href="<%= edit_user_path(user.id) %>">
+    <span><%= user.firstname+" "+user.lastname %></span>
+    <br><%= user.email %>
+    <% if user.is_admin %>
+      <br><strong>admin</strong>
+    <% end %>
+    <a class="badge badge badge-primary badge-pill" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= user_path(user) %>">
+      <span class="glyphicon glyphicon-trash"></span>
+    </a>
+    <a class="badge badge badge-primary badge-pill" href="<%= edit_user_path(user) %>">
       <span class="glyphicon">&#xe065;</span>
     </a>
   </li>

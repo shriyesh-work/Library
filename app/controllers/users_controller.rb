@@ -2,18 +2,26 @@ class UsersController < ApplicationController
   
   def index
     if cookies.signed[:user_logged]
-      redirect_to admin_users_path
+      @user_logged = User.find(cookies.signed[:user_logged])
+      if @user_logged.is_admin
+        redirect_to admin_users_path
+      else
+        redirect_to user_home_path
+      end
     end
   end
 
   def create
-    if cookies.signed[:user_logged]
-      @user_logged = User.find(cookies.signed[:user_logged])
-    end
     @user = User.new(user_params)
+    @user_logged = User.find(cookies.signed[:user_logged]) if cookies.signed[:user_logged]
     if @user.save
-      flash[:alert] = "Login with your new account!"
-      render :index
+      if @user_logged
+        flash[:alert] = "New User Added!"
+        redirect_to @user
+      else
+        flash[:alert] = "Login with your new account!"
+        render :index
+      end
     else
       render :new, user_params
     end
@@ -22,18 +30,27 @@ class UsersController < ApplicationController
   def new
     if cookies.signed[:user_logged]
       @user_logged = User.find(cookies.signed[:user_logged])
+      redirect_to user_home_path if not @user_logged.is_admin
     end
     @user = User.new(firstname: params[:firstname],lastname: params[:lastname],email: params[:email])
   end
 
   def edit
-    @user = User.find(params[:id])
     @user_logged = User.find(cookies.signed[:user_logged])
+    if (not @user_logged.is_admin) and @user_logged.id != params[:id]
+      @user = User.find(@user_logged.id)
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def show
-    @user = User.find(params[:id])
     @user_logged = User.find(cookies.signed[:user_logged])
+    if (not @user_logged.is_admin) and @user_logged.id != params[:id]
+      @user = User.find(@user_logged.id)
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def update
@@ -48,16 +65,27 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
   end
 
   def login
-    user = User.authenticate params.require(:user).permit(:email, :password)
-    if user
-      cookies.permanent.signed[:user_logged] = user.id;
+    if cookies.signed[:user_logged]
       redirect_to admin_users_path
     else
-      flash[:alert] = "Invalid Username/Password!"
-      render :index
+      user = User.authenticate params.require(:user).permit(:email, :password)
+      if user
+        cookies.permanent.signed[:user_logged] = user.id;
+        if not user.is_admin
+          redirect_to user_home_path
+        else
+          redirect_to admin_users_path
+        end
+      else
+        flash[:alert] = "Invalid Username/Password!"
+        render :index
+      end
     end
   end
 
@@ -67,6 +95,11 @@ class UsersController < ApplicationController
       flash[:alert] = "Logged Out Successfully"
     end
     redirect_to :users
+  end
+
+  def user_home
+    @user_logged = User.find(cookies.signed[:user_logged]) if cookies.signed[:user_logged]
+    @books = Book.all.limit(10).reverse
   end
 
   private 

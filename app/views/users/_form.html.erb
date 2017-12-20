@@ -36,13 +36,17 @@
     <%= form.label("Confirm Password") %>
     <%= form.password_field :password_confirmation, class:"form-control" %>
   </div>
-  <% if @user_logged and @user_logged.is_admin %>
+  <% if @user_logged %>
+    <% if @user_logged.is_admin %>
     <div class="form-group">
       <%= form.label("make this person admin: ") %> &nbsp&nbsp
       <%= form.radio_button(:is_admin, true) %>&nbsp&nbsp<%= form.label("Yes")%>&nbsp&nbsp
       <%= form.radio_button(:is_admin, false) %>&nbsp&nbsp<%= form.label("No")%>
     </div>
-    <%= form.submit "Add", class: 'btn btn-default' %>
+      <%= form.submit "Add", class: 'btn btn-default' %>
+    <% else %>
+      <%= form.submit "Update", class: 'btn btn-default' %>
+    <% end %>
   <% else %>
     <%= form.submit "Sign Up", class: 'btn btn-default' %>
   <% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'login', to: 'users#index'
   post 'login', to: 'users#login'
   get 'logout', to: 'users#logout'
+  get 'user/home', to: 'users#user_home'
 
   controller :admin do
     get 'admin/users', action: :users
