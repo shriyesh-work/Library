@@ -7,6 +7,8 @@ class User < ApplicationRecord
   before_save do 
     self.firstname = firstname.capitalize
     self.lastname = lastname.capitalize
+    self.email = email.downcase
+    self.username = email.split('@').first
   end
 
   def self.authenticate(user_params)

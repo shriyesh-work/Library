@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users
-  resources :books
-  
-  get 'login', to: 'users#index'
-  post 'login', to: 'users#login'
-  get 'logout', to: 'users#logout'
-  get 'user/home', to: 'users#user_home'
-
-  controller :admin do
-    get 'admin/users', action: :users
-    get 'admin/books', action: :books
-    post 'admin/users/search', action: :search_users
-    post 'admin/books/search', action: :search_books
+  namespace :admin do
+    resources :users, param: :username
+    resources :books
+    post '/users/search', to: 'users#search_users'
+    post '/books/search', to: 'books#search_books'
   end
 
-  root 'users#index'
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
+  get 'profile', to: 'users#show'
+  get '/profile/edit', to: 'users#edit'
+  post '/profile/edit', to: 'users#update'
+
+  get 'login', to: 'sessions#login'
+  post 'login', to: 'sessions#login'
+  get 'logout', to: 'sessions#logout'
+
+
+
 
 end

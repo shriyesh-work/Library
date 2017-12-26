@@ -1,7 +1,7 @@
-<%= link_to "Add User", new_user_path, class: 'btn btn-primary' %>
+<%= link_to "Add User", new_admin_user_path, class: 'btn btn-primary' %>
 <br>
 <br>
-<%= form_tag admin_users_search_path, remote: true do %>
+<%= form_tag admin_users_search_path, method: 'POST', remote: true do %>
 <div class="form-inline">
   <%= text_field_tag :query, "", class: 'form-control' %>
   <%= submit_tag "Search", class: 'btn btn-default' %>

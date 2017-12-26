@@ -6,16 +6,14 @@
         <span class="icon-bar"></span>
     </button>
     <div class="navbar-header">
-      <a class="navbar-brand" href="/users">Library</a>
+      <a class="navbar-brand" href="">Library</a>
     </div>
     <div class="collapse navbar-collapse" id="libraryMenu">
-      <% if cookies.signed[:user_logged] and @user_logged %>
+      <% if @user_logged %>
         <% if @user_logged.is_admin %>
         <ul class="nav navbar-nav">
-          <li class="<%= 'active' if current_page?(admin_users_path) %>"><a href="/admin/users">Users</a></li>
-          <li class="<%= 'active' if current_page?(admin_books_path) %>"><a href="/admin/books">Books</a></li>
-          
-        </ul>
+          <li class="<%= 'active' if current_page?(admin_users_path) %>"><a href="<%= admin_users_path %>">Users</a></li>
+          <li class="<%= 'active' if current_page?(admin_books_path) %>"><a href="<%= admin_books_path %>">Books</a></li>
         </ul>
         <% end %>
         <ul class="nav navbar-nav navbar-right">
@@ -23,16 +21,20 @@
             <a href="login" class="dropdown-toggle" data-toggle="dropdown" data-target="#userMenu"><%= @user_logged.firstname+" "+@user_logged.lastname %> <span class="caret"></span></a>
             <div class="dropdown" id="userMenu">
               <ul class="dropdown-menu">
-                <li><a href="/users/<%= @user_logged.id %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <% if @user_logged.is_admin %>
+                  <li><a href="<%= admin_user_path(@user_logged.username) %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <% else %>
+                  <li><a href="<%= profile_path %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <% end %>
+                <li><a href="<%= logout_path %>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
             </div>
           </li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li class="<%= 'active' if current_page?(new_user_url) %>"><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li class="<%= 'active' if current_page?(users_url) %>"><a href="/users"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li class="<%= 'active' if current_page?(signup_url) %>"><a href="<%= signup_url %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li class="<%= 'active' if current_page?(login_url) %>"><a href="<%= login_url %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       <% end %>
     </div>

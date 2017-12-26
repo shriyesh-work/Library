@@ -1,13 +1,12 @@
-<%= link_to "Add Book", new_book_path, class: 'btn btn-primary' %>
+<%= link_to "Add Book", new_admin_book_path, class: 'btn btn-primary' %>
 <br>
 <br>
-<%= form_tag admin_books_search_path, remote: true do %>
+<%= form_tag admin_books_search_path, method: 'POST', remote: true do %>
 <div class="form-inline">
   <%= text_field_tag :query, "", class: 'form-control' %>
   <%= submit_tag "Search", class: 'btn btn-default' %>
 </div>
 <% end %>
-
   
 <div class="row">
   <div class="col-sm-8">

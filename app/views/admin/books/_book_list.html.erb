@@ -4,10 +4,10 @@
     <h5><%= book.name %></h5>
     <h6><%= book.author %></h6>
     <%= book.category.name %>
-    <a class="badge" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= book_path(book) %>">
+    <a class="badge" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= admin_book_path(book) %>">
       <span class="glyphicon glyphicon-trash"></span>
     </a>
-    <a class="badge" href="<%= edit_book_path(book) %>">
+    <a class="badge" href="<%= edit_admin_book_path(book) %>">
       <span class="glyphicon">&#xe065;</span>
     </a>
   </li>
