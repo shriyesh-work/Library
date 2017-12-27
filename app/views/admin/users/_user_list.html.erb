@@ -1,17 +1,21 @@
-<ul class="list-group">
-<% @users.each do |user| %>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    <span><%= user.firstname+" "+user.lastname %></span>
-    <br><%= user.email %>
-    <% if user.is_admin %>
-      <br><strong>admin</strong>
-    <% end %>
-    <a class="badge badge badge-primary badge-pill" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= admin_user_path(user.username) %>">
-      <span class="glyphicon glyphicon-trash"></span>
-    </a>
-    <a class="badge badge badge-primary badge-pill" href="<%= edit_admin_user_path(user.username) %>">
-      <span class="glyphicon">&#xe065;</span>
-    </a>
-  </li>
+<% if @users.count < 1 %>
+<h5>Couldn't find anything, Try searching something else</h5>
+<% else %>
+  <ul class="list-group">
+  <% @users.each do |user| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span><%= user.firstname+" "+user.lastname %></span>
+      <br><%= user.email %>
+      <% if user.is_admin %>
+        <br><strong>admin</strong>
+      <% end %>
+      <a class="badge badge badge-primary badge-pill" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= admin_user_path(user.username) %>">
+        <span class="glyphicon glyphicon-trash"></span>
+      </a>
+      <a class="badge badge badge-primary badge-pill" href="<%= edit_admin_user_path(user.username) %>">
+        <span class="glyphicon">&#xe065;</span>
+      </a>
+    </li>
+  <% end %>
+  </ul>
 <% end %>
-</ul>

@@ -6,7 +6,7 @@ class Admin::AdminController < ApplicationController
     def user_logged
       if cookies.signed[:user_logged] 
         unless find_user.is_admin
-          redirect_to user_url
+          redirect_to profile_url
         end
       else
         flash[:error] = "You need to login first!"

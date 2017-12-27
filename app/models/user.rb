@@ -11,6 +11,8 @@ class User < ApplicationRecord
     self.username = email.split('@').first
   end
 
+  after_save ThinkingSphinx::RealTime.callback_for(:user)
+
   def self.authenticate(user_params)
     user = find_by email: user_params[:email]
     if user.present? and user.password.eql? user_params[:password]

@@ -2,7 +2,14 @@ class SessionsController < ApplicationController
 
   def login
     if request.get?
-      Rails.logger.info "Hello!!! Blah blah blah"
+      #Rails.logger.info "Hello!!! Blah blah blah"
+      if user
+        if user.is_admin 
+          redirect_to admin_users_url
+        else
+          redirect_to profile_url
+        end
+      end
     elsif request.post?
       user = User.authenticate params.require(:user).permit(:email, :password)
       if user
@@ -22,6 +29,14 @@ class SessionsController < ApplicationController
   def logout
     cookies.delete(:user_logged)
     redirect_to login_url
+  end
+
+  def user
+    if cookies.signed[:user_logged] 
+        @user_logged = User.find(cookies.signed[:user_logged])
+    else
+      nil
+    end
   end
 
 end

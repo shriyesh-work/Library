@@ -1,7 +1,8 @@
 class Admin::BooksController < Admin::AdminController
 
   def index
-    @books = Book.all
+    #@books = Book.all
+    @books = Book.search
   end
 
   def create
@@ -39,7 +40,12 @@ class Admin::BooksController < Admin::AdminController
   end
 
   def search_books
-    @books = Book.where("name LIKE :query", query: "%#{params[:query]}%")
+    #@books = Book.where("name LIKE :query", query: "%#{params[:query]}%")
+    if params[:query].empty?
+      @books = Book.search
+    else
+      @books = Book.search "*"+params[:query]+"*"
+    end
   end
 
   private

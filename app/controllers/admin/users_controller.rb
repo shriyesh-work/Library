@@ -1,13 +1,14 @@
 class Admin::UsersController < Admin::AdminController
 
   def index 
-    @users = User.all
+    #@users = User.all
+    @users = User.search
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_user_path(user)
+      redirect_to admin_user_path(@user.username)
     else
       render :new
     end
@@ -27,7 +28,7 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if user.update(user_params) 
-      redirect_to admin_user_path(user)
+      redirect_to admin_user_path(@user.username)
     else
       render :edit
     end
@@ -39,7 +40,13 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def search_users
-    @users = User.where("firstname LIKE :query", query: "%#{params[:query]}%")
+    #@users = User.where("firstname LIKE :query", query: "%#{params[:query]}%")
+    if params[:query].empty?
+      @users = User.search
+    else
+      @users = User.search "*"+params[:query]+"*"
+    end
+    
   end
 
   private 
