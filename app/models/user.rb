@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :records
+
   validates :firstname, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :lastname, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "not a valid email" }

@@ -3,6 +3,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   # Test for login page
   test "should get login" do 
+    cookies[:user_id] = 1
     get '/login'
     assert_response :success
   end

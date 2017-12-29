@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-4">
+    <h5>Search books here:</h5>
+    <%= form_tag home_search_path, method: 'POST', remote: true do %>
+      <div class="form-inline">
+        <%= text_field_tag :query, "", class: 'form-control' %>
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    <br>
+    <div id="book_list">  
+      
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <% if @new_books.count > 0 %>
+      <h4>Hey <%= @user_logged.firstname.downcase %>, check out these new books we added: </h4>
+      <% @new_books.each do |book| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <h5><%= book.name %></h5>
+          <h6><%= book.author %></h6>
+          <%= book.category.name %>
+          <a class="badge" href="<%= book_path(book.isbn) %>">
+            <span class="glyphicon glyphicon-book"></span>
+          </a>
+        </li>
+      <% end %>
+    <% else %>
+      <h4>Looks like there are no new books</h4>
+    <% end %>
+  </div>
+</div>

@@ -10,12 +10,17 @@
     </div>
     <div class="collapse navbar-collapse" id="libraryMenu">
       <% if @user_logged %>
-        <% if @user_logged.is_admin %>
         <ul class="nav navbar-nav">
-          <li class="<%= 'active' if current_page?(admin_users_path) %>"><a href="<%= admin_users_path %>">Users</a></li>
-          <li class="<%= 'active' if current_page?(admin_books_path) %>"><a href="<%= admin_books_path %>">Books</a></li>
+            <li class="<%= 'active' if current_page?(home_path) %>"><a href="<%= home_path %>">Home</a></li>
+            <li class="<%= 'active' if current_page?(books_path) %>"><a href="<%= books_path %>">Books</a></li>
         </ul>
+        <% if @user_logged.is_admin %>
+          <ul class="nav navbar-nav">
+            <li class="<%= 'active' if current_page?(admin_users_path) %>"><a href="<%= admin_users_path %>">Users</a></li>
+            <li class="<%= 'active' if current_page?(admin_books_path) %>"><a href="<%= admin_books_path %>">Books</a></li>
+          </ul>
         <% end %>
+        
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="login" class="dropdown-toggle" data-toggle="dropdown" data-target="#userMenu"><%= @user_logged.firstname+" "+@user_logged.lastname %> <span class="caret"></span></a>

@@ -1,7 +1,8 @@
-class Admin::UsersController < Admin::AdminController
+class Admin::UsersController < Admin::SessionsController
+
+  before_action :user_logged
 
   def index 
-    #@users = User.all
     @users = User.search
   end
 
@@ -40,7 +41,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def search_users
-    #@users = User.where("firstname LIKE :query", query: "%#{params[:query]}%")
     if params[:query].empty?
       @users = User.search
     else

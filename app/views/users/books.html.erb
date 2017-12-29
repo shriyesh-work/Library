@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-6">
+    <% if @records.empty? %>
+      <h4>You have not borrowed any books</h4>
+    <% else %>
+      <h4>These are the books borrowed by you:</h4>
+        <div class="list-group">
+          <% @records.each do |record| %>
+            <span class="list-group-item clearfix">
+              <h5><%= record.book.name %></h5>
+              <%= record.book.author %>
+              <span class="pull-right">
+                  <span class="btn btn-sm btn-default">
+                      <%= 7 - (DateTime.now.to_date - record.created_at.to_date).to_i %> day(s) left
+                  </span>
+                  <a href="<%= return_path(record.book.id) %>">
+                    <span class="btn btn-sm btn-primary">
+                        return
+                    </span>
+                  </a>
+              </span>
+            </span>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>

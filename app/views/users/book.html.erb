@@ -23,6 +23,14 @@
     </tbody>
     
   </table>
-  <%= link_to "Edit Book Info", edit_admin_book_path, class: 'btn btn-primary' %>
+  <% if @record %>
+    <% if @record.user_id == @user_logged.id %>
+      <h5>You have this book already</h5>
+    <% else %>
+      <h5>This book borrowed already</h5>
+    <% end %>
+  <% else %>
+    <%= link_to "Borrow This Book", borrow_path(@book.id), class: 'btn btn-primary' %>
+  <% end %>
 </div>
 </div>

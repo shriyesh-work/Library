@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222071217) do
+ActiveRecord::Schema.define(version: 20171229132125) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 128
     t.string "author", limit: 128
     t.bigint "isbn"
+    t.integer "copies", default: 1
     t.bigint "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["category_id"], name: "fk_rails_1e86d9c4ec"
   end
 
@@ -26,13 +29,23 @@ ActiveRecord::Schema.define(version: 20171222071217) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.boolean "returned", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_records_on_book_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname", limit: 35
     t.string "lastname", limit: 35
     t.string "username", limit: 35
     t.string "email", limit: 128
     t.string "password", limit: 128
-    t.boolean "is_admin", default: false
+    t.boolean "is_admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

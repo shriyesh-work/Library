@@ -1,4 +1,6 @@
-class Admin::BooksController < Admin::AdminController
+class Admin::BooksController < Admin::SessionsController
+
+  before_action :user_logged
 
   def index
     #@books = Book.all
