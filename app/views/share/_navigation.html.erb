@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="libraryMenu">
       <% if @user_logged %>
         <ul class="nav navbar-nav">
-            <li class="<%= 'active' if current_page?(home_path) %>"><a href="<%= home_path %>">Home</a></li>
+            <li class="<%= 'active' if current_page?(new_home_path) %>"><a href="<%= new_home_path %>">Home</a></li>
             <li class="<%= 'active' if current_page?(books_path) %>"><a href="<%= books_path %>">Books</a></li>
         </ul>
         <% if @user_logged.is_admin %>
@@ -29,17 +29,17 @@
                 <% if @user_logged.is_admin %>
                   <li><a href="<%= admin_user_path(@user_logged.username) %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                 <% else %>
-                  <li><a href="<%= profile_path %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                  <li><a href="<%= user_path %>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                 <% end %>
-                <li><a href="<%= logout_path %>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a data-method="delete" href="<%= session_path %>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
             </div>
           </li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li class="<%= 'active' if current_page?(signup_url) %>"><a href="<%= signup_url %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li class="<%= 'active' if current_page?(login_url) %>"><a href="<%= login_url %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li class="<%= 'active' if current_page?(new_user_path) %>"><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li class="<%= 'active' if current_page?(new_session_path) %>"><a href="<%= new_session_path %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       <% end %>
     </div>

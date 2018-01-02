@@ -11,7 +11,7 @@
         </ul>
       </div>
     <% end %>
-    <%= form_for @user, url: signup_url do |form| %>
+    <%= form_for @user, url: user_path do |form| %>
       <div class="form-group">
         <%= label(:user, :firstname) %>
         <%= text_field(:user, :firstname, class: 'form-control') %>

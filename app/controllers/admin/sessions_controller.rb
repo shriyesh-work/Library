@@ -5,7 +5,7 @@ class Admin::SessionsController < ApplicationController
   def user_logged
     unless cookies.signed[:user_logged] and find_user and find_user.is_admin 
       flash[:error] = "You need to login first!"
-      redirect_to login_path
+      redirect_to new_session_path
     end
   end
 

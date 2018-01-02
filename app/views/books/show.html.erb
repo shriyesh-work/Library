@@ -30,7 +30,7 @@
       <h5>This book borrowed already</h5>
     <% end %>
   <% else %>
-    <%= link_to "Borrow This Book", borrow_path(@book.id), class: 'btn btn-primary' %>
+    <%= link_to "Borrow This Book", library_record_path(@book.id), class: 'btn btn-primary' %>
   <% end %>
 </div>
 </div>

@@ -7,7 +7,7 @@
         <%= flash[:error] %>
       </div>
     <% end %> 
-    <%= form_tag(action: "login") do %>
+    <%= form_tag(action: "create") do %>
       <div class="form-group"> 
         <%= label(:user, :email) %>
         <%= email_field(:user, :email, class: 'form-control') %>

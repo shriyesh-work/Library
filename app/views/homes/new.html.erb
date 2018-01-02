@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-4">
     <h5>Search books here:</h5>
-    <%= form_tag home_search_path, method: 'POST', remote: true do %>
+    <%= form_tag home_path, method: 'GET', remote: true do %>
       <div class="form-inline">
         <%= text_field_tag :query, "", class: 'form-control' %>
         <%= submit_tag "Search", class: 'btn btn-primary' %>

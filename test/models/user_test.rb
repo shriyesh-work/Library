@@ -1,7 +1,8 @@
-require 'test_helper.rb'
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-	# Test for firstname
+
+  # Test for firstname
 
   test "firstname not present" do 
     user = User.create(firstname: nil, lastname: 'Doe', email: 'jondoe@anonymous.com', password: 'jondoe123', is_admin: true)
@@ -48,7 +49,9 @@ class UserTest < ActiveSupport::TestCase
   # Test for authenticate
 
   test "user authenticates" do
-    user = User.authenticate(email: 'jondoe@anonymous.com', password: 'jondoe123')
+    user = users(:jon)
+    user = User.authenticate(email: user.email, password: user.password)
     assert_kind_of User, user, "Failed to authenticate"
   end
+
 end
