@@ -1,5 +1,14 @@
 jon:
   firstname: 'Jon'
   lastname: 'Doe'
+  username: 'jon'
   email: 'jon@gmail.com'
   password: 'jon123'
+
+rose:
+  firstname: 'Rose'
+  lastname: 'Merry'
+  username: 'rose'
+  email: 'rose@gmail.com'
+  password: 'rose123'
+  is_admin: true

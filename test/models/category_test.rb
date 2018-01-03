@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class Category < ActiveSupport::TestCase
+class CategoryTest < ActiveSupport::TestCase
 end

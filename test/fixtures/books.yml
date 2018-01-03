@@ -1,0 +1,6 @@
+some_book:
+  name: 'Some book'
+  author: 'Some Author'
+  isbn: 12345678123
+  category: comedy
+

@@ -21,4 +21,5 @@ class LibraryRecordsController < SessionsController
     def record_exist
       record = LibraryRecord.find_by(book_id: params[:id], user_id: @user_logged.id, returned: false)
     end
+    
   end

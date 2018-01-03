@@ -1,0 +1,4 @@
+record:
+  user: jon
+  book: some_book
+  returned: false
