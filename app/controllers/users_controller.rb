@@ -17,6 +17,7 @@ class UsersController < SessionsController
       redirect_to new_home_path
     end
     @user = User.new
+    
   end
 
   def edit

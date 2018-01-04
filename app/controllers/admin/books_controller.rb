@@ -41,7 +41,6 @@ class Admin::BooksController < Admin::SessionsController
   end
 
   def search_books
-    #@books = Book.where("name LIKE :query", query: "%#{params[:query]}%")
     if params[:query].empty?
       @books = Book.search
     else

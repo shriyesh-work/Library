@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class LibraryRecord < ActiveSupport::TestCase
+class LibraryRecordTest < ActiveSupport::TestCase
 end

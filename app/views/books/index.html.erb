@@ -10,14 +10,19 @@
               <h5><%= record.book.name %></h5>
               <%= record.book.author %>
               <span class="pull-right">
-                  <span class="btn btn-sm btn-default">
-                      <%= 7 - (DateTime.now.to_date - record.created_at.to_date).to_i %> day(s) left
+                <span class="btn btn-sm btn-default">
+                  <% days = 7 - (DateTime.now.to_date - record.created_at.to_date).to_i %>
+                  <% if days < 1 %>
+                    <%= "overdue" %>   
+                  <% else %> 
+                    <%= days.to_s+" day(s) left" %>      
+                  <% end %>         
+                </span>      
+                <a data-method="delete" href="<%= library_record_path(record.book.id) %>">
+                  <span class="btn btn-sm btn-primary">
+                      return
                   </span>
-                  <a data-method="delete" href="<%= library_record_path(record.book.id) %>">
-                    <span class="btn btn-sm btn-primary">
-                        return
-                    </span>
-                  </a>
+                </a>
               </span>
             </span>
           <% end %>
