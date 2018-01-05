@@ -3,7 +3,7 @@ require 'test_helper'
 class LibraryRecordsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @record = library_records(:record)
+    @record = library_records(:record_borrowed_jon)
     @book = books(:some_book)
   end
 

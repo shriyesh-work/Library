@@ -1,4 +1,19 @@
-record:
+record_borrowed_jon:
   user: jon
   book: some_book
   returned: false
+
+record_returned_jon:
+  user: jon
+  book: some_book
+  returned: true
+
+record_borrowed_rose:
+  user: rose
+  book: some_book
+  returned: false
+
+record_returned_rose:
+  user: rose
+  book: some_book
+  returned: true

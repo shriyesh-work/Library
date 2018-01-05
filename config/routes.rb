@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, param: :username
     resources :books
+    resources :library_records
     post '/users/search', to: 'users#search_users'
     post '/books/search', to: 'books#search_books'
   end
