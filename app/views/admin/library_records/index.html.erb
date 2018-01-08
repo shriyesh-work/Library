@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h2>Library Records</h2>
+    <%= form_tag admin_library_records_path, method: 'GET', id: "list", remote: true do %>
+      <div class="form-inline">
+        <span>Filter:</span>
+        <select name="filter"> 
+          <option value="returned" <%= "selected" if params[:filter]=="returned"%> >Returned</option>
+          <option value="borrowed" <%= "selected" if params[:filter]=="borrowed"%> >Borrowed</option>
+        </select>
+        <%= submit_tag "Get Records", class: 'btn-xs btn-primary' %>
+      </div>
+    <% end %>
+    <br>
+    <div id="library_records_list">
+    </div>
+  </div>
+</div>

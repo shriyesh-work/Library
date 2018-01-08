@@ -1,0 +1,13 @@
+<% if @records.count < 1 %>
+<h5>Couldn't find anything, Try searching something else</h5>
+<% else %>
+  <ul class="list-group">
+  <% @records.each do |record| %>
+    <li class="list-group-item">
+      <strong><%= record.book.name %></strong>
+      <br>
+      borrowed on: <%= record.created_at.to_date %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
